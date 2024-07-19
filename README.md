@@ -35,9 +35,9 @@ Start the Game: Run **python main.py**
 -  **Shoot:**     Press the spacebar to shoot bullets at the invaders.
 
 #### Objective:
-- ** Destroy all the invaders before they reach the bottom of the screen.
-- ** Avoid getting hit by the invaders' bullets.
-- ** Increase your score by hitting the invaders.
+-  Destroy all the invaders before they reach the bottom of the screen.
+-  Avoid getting hit by the invaders' bullets.
+-  Increase your score by hitting the invaders.
 
 ## ScreenShots:
 

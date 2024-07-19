@@ -10,7 +10,7 @@ pygame.init()
 
 # It is a tuple and screen is a variable 
 # It need width and the height of the screen that you want to create 
-# Create a screen 
+# Create a screen
 x_axis = 800
 y_axis = 600 
 screen = pygame.display.set_mode((x_axis , y_axis))  #px
@@ -50,8 +50,8 @@ for i in range(num_enemy):
 
 # Bullet
 # Here two states --> ready state and the fire state
-# ready state --> You don't able to see the bullet movement 
-# fire state -->  Fire means , bullet is currently moving
+# ready state -->     You don't able to see the bullet movement 
+# fire state -->      Fire means , bullet is currently moving
 
 bulletImg = pygame.image.load('bullet.png')
 bulletX = 0

@@ -44,6 +44,9 @@ python main.py
 
 ![IMG1](https://github.com/user-attachments/assets/9f332b4e-618d-4566-aa5b-fa56fce4fae2)
 
+![IMG2](https://github.com/user-attachments/assets/43e6a38c-2558-4bfe-8245-a02bbad7203d)
+
+
 
 
 

@@ -1,0 +1,131 @@
+
+--> 1.Give me the Items name which are not sold by any branch.
+ 
+(select distinct item_code  from items) 
+except
+(select distinct item_code  from order_details)
+
+--> 2. Give me item details whose rating is more than 4 but not sold yet by given branch. 
+
+select distinct item_code  from items where rating > 4 
+except
+select distinct od.item_code from items as i join order_details as od on (i.item_code = od.item_code)
+where rating > 4
+
+
+--> 3. Give me the date when the maximum profits arrives for given branch.
+
+select branch_id, invdate , sum(qty*(GSP - cost_price)) as maximum_profits from 
+items as i join order_details as od on (i.item_code = od.item_code)
+join orders as o on (od.invoice_no = o.invoice_no)
+group by branch_id, invdate order by branch_id, invdate
+
+-->  4. Give me Top 5 Best selling items name.
+
+select od.branch_id , i.item_code, i.item_name, sum(qty) as sell_qty from 
+items as i join order_details as od on (i.item_code = od.item_code) 
+group by od.branch_id,
+i.item_code, i.item_name
+order by sell_qty desc limit 5
+
+--> 5. Give me Top 5 Best Profitable items.
+
+select od.branch_id , i.item_code, i.item_name, sum(qty * ((GSP - cost_price))) as Best_Profit 
+from items as i join order_details as od on (i.item_code = od.item_code)
+group by od.branch_id, i.item_code, i.item_name order by Best_Profit  desc limit 5
+
+--> 6. Give me Branch Wise Average Salary of employees.
+
+select branch_id , ROUND( avg(e_salary) , 2 ) as avg_salary from employee group by branch_id order by branch_id
+
+-->  7. Give me information of my last 5 orders for given customer
+
+select * from  
+orders as o join order_details as od on (o.invoice_no = od.invoice_no) where customer_id = 'CI003'
+order by extract(day from invdate) desc limit 5 
+
+--> 8. Give me item name of those items that are not available in Branch B001.
+
+	 select s.item_code , i.item_name from sells as s join items as i on (s.item_code = i.item_code) 
+ where qty_instock = 0 and branch_id = 'B001'
+
+--> 9. List the branch wise daily profit for given admin. 
+
+select admin_id , b.branch_id , extract(day from invdate) as day, sum(qty*(GSP - cost_price)) as daily_profit 
+from 
+items as i join order_details as od on (i.item_code = od.item_code)
+join 
+orders as o on (od.invoice_no = o.invoice_no)
+join 
+branch as b on (b.branch_id = od.branch_id) 
+group by admin_id , b.branch_id , extract(day from invdate) 
+order by extract(day from invdate) 
+
+-- > 10. Give me branch details where complaints are maximum and where complaints are minimum.
+
+select r1.branch_id , max(count) as max_complaint , min(count) as min_complaint from
+( select branch_id , count(customer_id) from 
+orders as o join order_details as od on (o.invoice_no = od.invoice_no )
+join 
+complaint as cd on (cd.invoice_no = od.invoice_no)
+group by branch_id ) as r1 group by r1.branch_id
+
+--> 11. Give me Total Sales of 10 days for given Branch and item. 
+
+select od.branch_id, i.item_code, i.item_name ,sum(qty) as qty , sum(qty * (GSP - cost_price)) as total_sales from 
+items as i join order_details as od on (i.item_code = od.item_code) 
+group by od.branch_id, i.item_code, i.item_name order by od.branch_id ,qty, total_sales
+
+--> 12. Give me 10 Most Discountable items.
+
+select i.item_code , i.item_name,sum((MRP - GSP)/qty) as Discount_perpiece, 
+ROUND ( sum( ((MRP - GSP)/qty) * ((100.00)/MRP)) , 2 )  as Discount_perce from
+items as i join order_details as od on (i.item_code = od.item_code)
+group by i.item_code , i.item_name order by Discount_perce desc limit 10
+
+--> 13. Give me the laptops(Brand_name, GSP, Warranty, Rating) which have greater than 4 rating,
+--  don't have any complaint and have at least 1 year warranty.
+
+select brand_name , GSP , warranty, rating from items where
+rating > 4 and warranty > 12 and item_name = 'Laptop' and item_code not in 
+( select item_code from orders as o join order_details as od on (o.invoice_no = od.invoice_no)
+ join complaint as co on (co.invoice_no = o.invoice_no) ) order by gsp desc
+ 
+--> 14. Give me Best Selling itemname for each category.
+
+(select item_name,  MAX(GSP - cost_price ) as max_profit from 
+items group by item_name )  
+
+--> 15. Give me details of items which has qty is less than 20 by given branch and rating > 4
+
+select s.branch_id , i.item_code, i.item_name ,qty_instock,rating from 
+items as i join sells as s on (s.item_code = i.item_code) 
+where qty_instock < 20 and rating > 4.5 group by s.branch_id , i.item_code, i.item_name ,rating,qty_instock
+order by branch_id,rating desc
+
+--> 16.  Give me the most discountable item for each category.
+
+(select item_name,  MAX(MRP - GSP) as max_dis , ROUND( MAX((MRP - GSP) * ((100.00)/ MRP) ) , 2 ) as max_dis_per from 
+items group by item_name ) 
+
+--> 17. Give 5% discount to customer whom age is greter than 60.
+
+select c.customer_id , c.name,sum(qty * GSP) as original_price_bill , 
+sum( qty * GSP * 0.95 ) as discount_price_bill ,sum(qty * GSP * 0.05) as savings from 
+items as i join order_details as od on(i.item_code = od.item_code) join 
+orders as o on (o.invoice_no = od.invoice_no) join
+customer as c on (c.customer_id = o.customer_id)
+where ( extract(year from invdate) - extract(year from  birth_date) ) > 60 
+group by c.customer_id , c.name order by c.customer_id  
+
+
+
+
+
+
+
+
+
+
+
+

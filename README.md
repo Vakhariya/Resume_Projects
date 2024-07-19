@@ -1,21 +1,22 @@
 # Space Invader Game
 
-## Table of Contents
+## Table of Contents:
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Installation](#installation)
 4. [How to Play](#how-to-play)
 5. [Screenshots](#screenshots)
+6. [Video](#video).
 
-## Introduction
+## Introduction:
 Welcome to My Pygame Game! This is a fun and interactive game developed using Pygame, a set of Python modules designed for writing video games. The game is simple, yet addictive, and suitable for players of all ages.
 
-## Features
+## Features:
 - **Smooth Controls:** Easy-to-learn controls make the game accessible for everyone.
 - **Vibrant Graphics:** Colorful and detailed graphics enhance the gaming experience.
 - **Sound Effects:** Enjoy immersive sound effects that bring the game to life.
 
-## Installation
+## Installation:
 To run this game, you'll need to have Python and Pygame installed on your system.
 
 ## Install the required dependencies:
@@ -24,9 +25,9 @@ pip install pygame
 ## Run the game:
 python main.py
 
-## How to Play
+## How to Play:
 
-Start the Game: Run **python main.py** 
+- Start the Game: Run **python main.py** 
 
 #### Controls:
 
@@ -40,6 +41,8 @@ Start the Game: Run **python main.py**
 -  Increase your score by hitting the invaders.
 
 ## ScreenShots:
+
+
 
 
 

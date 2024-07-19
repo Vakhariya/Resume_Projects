@@ -51,6 +51,9 @@ python main.py
 
 ## Video:
 
+https://github.com/user-attachments/assets/d0adf7d5-fcce-4b7f-a04d-f47a14f3ed1a
+
+
 ## References:
 
 - https://www.geeksforgeeks.org/pygame-tutorial/

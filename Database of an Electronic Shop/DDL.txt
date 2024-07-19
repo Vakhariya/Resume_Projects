@@ -1,0 +1,133 @@
+-- create schema jetha_;
+-- SET SEARCH_PATH TO jetha_;
+
+CREATE TABLE Admin (
+Admin_id varchar (5),
+Name varchar (20),
+Password varchar (20),
+PRIMARY KEY(Admin_id)
+);
+
+CREATE TABLE Branch (
+Branch_id varchar (5),
+Address varchar(100),
+Admin_id varchar (5),
+PRIMARY KEY(Branch_id),
+FOREIGN KEY (Admin_id) REFERENCES Admin (Admin_id)
+ ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE  Employee (
+Employee_id varchar (5),
+E_name varchar (20),
+E_gender varchar (1),
+E_salary int,
+Branch_id varchar (5),
+PRIMARY KEY(Employee_id),
+FOREIGN KEY (Branch_id) REFERENCES Branch(Branch_id)
+ ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+
+
+CREATE TABLE Items (
+Item_code varchar (5),
+Item_name varchar(20),
+Brand_name  varchar (20),
+GSP int,
+MRP int,
+Cost_price int,
+Warranty int,
+Rating real,
+PRIMARY KEY(Item_code)
+);
+
+CREATE TABLE Features (
+Item_code varchar (5),
+Feature varchar (500),
+PRIMARY KEY (Item_code, Feature),
+FOREIGN KEY (Item_code) REFERENCES Items (Item_code)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Customer (
+Customer_id varchar(5),
+Password varchar(20),
+Name varchar(20),
+Address varchar(500),
+Birth_date date,
+Gender varchar(10),
+PRIMARY KEY(Customer_id)
+);
+
+CREATE TABLE Customer_Mobile(
+Customer_id varchar (5),
+Mobile_no  BIGint,
+PRIMARY KEY(Customer_id, Mobile_no),
+FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Customer_Email (
+Customer_id varchar (5),
+Email_id varchar(100),
+PRIMARY KEY(Customer_id, Email_id),
+FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TABLE orders (
+Invoice_no int,
+Invdate date,
+Status varchar(20),
+Payment_date  date,
+Payment_method varchar (50),
+Total_amount int,
+Customer_id varchar(5),
+PRIMARY KEY(Invoice_no),
+FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TABLE Complaint(
+Complaint_id varchar(5),
+Invoice_no int,
+Complaint_date date,
+PRIMARY KEY(Complaint_id),
+FOREIGN KEY (Invoice_no) REFERENCES orders(Invoice_no)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Complaint_details (
+Complaint_id varchar(5),
+Complaint_details varchar(200),
+PRIMARY KEY(Complaint_id, Complaint_details),
+FOREIGN KEY (Complaint_id) REFERENCES Complaint(Complaint_id)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TABLE Sells (
+Item_code varchar (5),
+Branch_id varchar (5),
+Qty_instock int,
+PRIMARY KEY(Item_code, Branch_id),  
+FOREIGN KEY (Item_code) REFERENCES Items (Item_code),
+FOREIGN KEY (Branch_id) REFERENCES Branch (Branch_id)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Order_details (
+Invoice_no int,
+Item_code varchar (5),
+Qty int,
+Rate int,
+Branch_id varchar (5),
+PRIMARY KEY(Invoice_no , Item_code),
+FOREIGN KEY (Invoice_no) REFERENCES orders(Invoice_no),
+FOREIGN KEY (Item_code,Branch_id) REFERENCES Sells(Item_code,Branch_id)
+ON UPDATE CASCADE ON DELETE CASCADE
+)

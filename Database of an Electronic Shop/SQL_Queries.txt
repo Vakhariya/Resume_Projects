@@ -103,7 +103,7 @@ items as i join sells as s on (s.item_code = i.item_code)
 where qty_instock < 20 and rating > 4.5 group by s.branch_id , i.item_code, i.item_name ,rating,qty_instock
 order by branch_id,rating desc
 
---> 16.  Give me the most discountable item for each category.
+--> 16. Give me the most discountable item for each category.
 
 (select item_name,  MAX(MRP - GSP) as max_dis , ROUND( MAX((MRP - GSP) * ((100.00)/ MRP) ) , 2 ) as max_dis_per from 
 items group by item_name ) 
@@ -117,9 +117,6 @@ orders as o on (o.invoice_no = od.invoice_no) join
 customer as c on (c.customer_id = o.customer_id)
 where ( extract(year from invdate) - extract(year from  birth_date) ) > 60 
 group by c.customer_id , c.name order by c.customer_id  
-
-
-
 
 
 

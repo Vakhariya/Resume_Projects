@@ -7,6 +7,7 @@
 4. [How to Play](#how-to-play)
 5. [Screenshots](#screenshots)
 6. [Video](#video).
+7. [References](#refrences).
 
 ## Introduction:
 Welcome to My Pygame Game! This is a fun and interactive game developed using Pygame, a set of Python modules designed for writing video games. The game is simple, yet addictive, and suitable for players of all ages.
@@ -50,7 +51,7 @@ python main.py
 
 ## Video:
 
-## Refrences:
+## References:
 
 - https://www.geeksforgeeks.org/pygame-tutorial/
 

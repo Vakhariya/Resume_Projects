@@ -30,9 +30,9 @@ Start the Game: Run python main.py
 
 #### Controls:
 
-Move Left: Press the left arrow key (←) to move your spaceship left.
-Move Right: Press the right arrow key (→) to move your spaceship right.
-Shoot: Press the spacebar to shoot bullets at the invaders.
+- **Move Left:**  Press the left arrow key (←) to move your spaceship left.
+- **Move Right:** Press the right arrow key (→) to move your spaceship right.
+-  **Shoot:**     Press the spacebar to shoot bullets at the invaders.
 
 #### Objective:
 Destroy all the invaders before they reach the bottom of the screen.

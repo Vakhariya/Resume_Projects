@@ -50,10 +50,10 @@ python main.py
 
 ## Video:
 
+## Refrences:
 
+- https://www.geeksforgeeks.org/pygame-tutorial/
 
-
-https://github.com/user-attachments/assets/672e494e-3655-4247-b3b7-06f580779b8c
 
 
 

@@ -42,6 +42,8 @@ python main.py
 
 ## ScreenShots:
 
+![IMG1](https://github.com/user-attachments/assets/9f332b4e-618d-4566-aa5b-fa56fce4fae2)
+
 
 
 

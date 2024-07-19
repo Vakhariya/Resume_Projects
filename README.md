@@ -59,8 +59,6 @@ https://github.com/user-attachments/assets/d0adf7d5-fcce-4b7f-a04d-f47a14f3ed1a
 - https://www.geeksforgeeks.org/pygame-tutorial/
 
 
-# Database of an Electronic Shop
-
 
 
 
